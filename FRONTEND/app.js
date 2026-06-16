@@ -1,3 +1,6 @@
+const BASE_URL = "https://jwt-auth-api-ku3o.onrender.com";
+
+// Registration Form
 const registerForm = document.getElementById("registerForm");
 
 registerForm.addEventListener("submit", async (e) => {
@@ -10,7 +13,7 @@ registerForm.addEventListener("submit", async (e) => {
   const password = document.getElementById("registerPassword").value;
 
   try {
-    const response = await fetch("http://localhost:5000/api/auth/register", {
+    const response = await fetch(`${BASE_URL}/api/auth/register`, {
       method: "POST",
 
       headers: {
@@ -43,7 +46,7 @@ loginForm.addEventListener("submit", async (e) => {
   const password = document.getElementById("loginPassword").value;
 
   try {
-    const response = await fetch("http://localhost:5000/api/auth/login", {
+    const response = await fetch(`${BASE_URL}/api/auth/login`, {
       method: "POST",
 
       headers: {
@@ -74,7 +77,7 @@ const profileBtn = document.getElementById("profileBtn");
 profileBtn.addEventListener("click", async () => {
   let token = localStorage.getItem("accessToken");
 
-  let response = await fetch("http://localhost:5000/api/auth/profile", {
+  let response = await fetch(`${BASE_URL}/api/auth/profile`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -83,7 +86,7 @@ profileBtn.addEventListener("click", async () => {
   if (response.status === 401) {
     token = await refreshAccessToken();
 
-    response = await fetch("http://localhost:5000/api/auth/profile", {
+    response = await fetch(`${BASE_URL}/api/auth/profile`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -100,7 +103,7 @@ const logoutBtn = document.getElementById("logoutBtn");
 
 logoutBtn.addEventListener("click", async () => {
   try {
-    const response = await fetch("http://localhost:5000/api/auth/logout", {
+    const response = await fetch(`${BASE_URL}/api/auth/logout`, {
       method: "POST",
 
       credentials: "include",
@@ -120,7 +123,7 @@ logoutBtn.addEventListener("click", async () => {
 
 const refreshAccessToken = async () => {
   try {
-    const response = await fetch("http://localhost:5000/api/auth/refresh", {
+    const response = await fetch(`${BASE_URL}/api/auth/refresh`, {
       method: "POST",
       credentials: "include",
     });
