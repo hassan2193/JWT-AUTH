@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:5000", "https://jwt-auth-api.netlify.app"],
+    origin: ["http://localhost:5500", "https://jwt-auth-api.netlify.app"],
     credentials: true,
   }),
 );
