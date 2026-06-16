@@ -19,4 +19,8 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 
+app.get("/", (req, res) => {
+  res.send("JWT Auth API is Running ...");
+});
+
 module.exports = app;
